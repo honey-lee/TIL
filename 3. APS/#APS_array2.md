@@ -73,7 +73,7 @@ n = len(arr)
 
 for i in range(1<<n):
     for j in range(n):
-        if i & (i<<j)
+        if i & (1<<j)
 ```
 
 
