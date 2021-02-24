@@ -142,3 +142,23 @@ def powerset(idx):
 powerset(0)
 ```
 
+
+
+## 순열 생성(백트래킹)
+
+```python
+def backtrack(a, k, input):
+    global MAXCANDIDATES
+    c = [0] * MAXCANDIDATES
+    
+    if k == input:
+       for i in range(1, K+1):
+           print(a[i], end = ' ')
+    else:
+        k += 1
+        ncandidates = construct_candidates(a, k, input, c)
+        for i in range(ncandidates):
+            a[k] = c[i]
+            backtrack
+```
+
