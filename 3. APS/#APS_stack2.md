@@ -80,7 +80,7 @@
 - 어떤 노드에서 출발하는 경로가 해결책으로 이어질 것 같지 않으면 더 이상 그 경로를 따라가지 않음으로써 시도의 횟수를 줄임
 - 깊이 우선탐색이 모든 경로를 추적하는데 비해 백트래킹은 불필요한 경로를 조기에 차단 
 - 깊이 우선 탐색을 하기에는 경우의 수가 너무 많은 경우 (N! 가지의 경우의 수를 가진 문제)에 처리 불가능한 문제를 처리
-- 일반적으로 경우의 수가 줄어들지만 최악의 경우에 지수함수 시간을 요하므로 처리 불가능, 조건이 잘못 들어갈 경우 정답의 경우도 차단될 수 있다
+- 일반적으로 경우의 수가 줄어들지만 최악의 경우에(완전탐색이 됨) 지수함수 시간을 요하므로 처리 불가능, 조건이 잘못 들어갈 경우 정답의 경우도 차단될 수 있다
 
 
 
@@ -109,7 +109,7 @@ if promising(v):
 ```python
 def backtrack(a, k, input):
     global MAXCANDIDATES
-    c = [0] * MAXCANDIDATES
+    c = [0] * MAXCANDIDATES #yes or no 저장
     
     if k == input:
         process_solution(a, k) #답이면 원하는 작업을 한다
@@ -125,9 +125,9 @@ def construct_candidates(a, k, input, c):
     c[1] = False
     return 2
 
-MAXCANDIDATES = 100
-NMAX = 100
-a = [0] * NMAX
+MAXCANDIDATES = 100  #임의로 100 크기로 세팅 
+NMAX = 100 
+a = [0] * NMAX  #a는 해당 원소를 사용했는지 여부를 보여줌  
 backtrack(a, 0, 3)
 ```
 
@@ -141,7 +141,7 @@ sel = [0] * N     #a리스트 (내가 해당 원소를 뽑았는지)
 def powerset(idx):
     if idx == N:
         print(sel, ':', end = '  ')
-        for i in range(N):
+        for i in range(N):	
             if sel[i]:
                 print(arr[i], end = ' ')
         print()
