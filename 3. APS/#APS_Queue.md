@@ -39,7 +39,7 @@
 
   
 
-## 큐 생성
+### 큐 생성 및 구현 
 
 1. 초기 공백 큐 생성
    1. 크기 n인 1차원 배열 생성
@@ -98,8 +98,84 @@ def Qpeek():
 
 
 
+## 원형 큐
+
+- 초기 공백 상태 : `front = rear = 0`
+- Index의 순환 
+  - front와 rear의 위치가 배열의 마지막 인덱스인 n-1을 가리킨 후 그 다음에는 논리적 순환을 이루어 배열의 처음 인덱스인 0으로 이동해야 함
+  - 이를 위해 나머지 연산자 `%`를 사용함 
+- front 변수 : 공백 상태와 포화상태 구분을 위해 front자리는 사용하지 않고 빈자리로 둠
+- 삽입 및 삭제 위치
+
+|             | 삽입 위치             | 삭제 위치               |
+| ----------- | --------------------- | ----------------------- |
+| **선형 큐** | rear = rear + 1       | front = front + 1       |
+| **원형 큐** | rear = (rear + 1) % n | front = (front + 1) % n |
 
 
 
+### 큐 생성 및 구현
+
+1. 초기 공백 큐 생성
+   1. 크기 n인 1차원 배열 생성
+   2. front와 rear를 0으로 초기화
+2. 공백 및 포화 상태 검사
+   1. 공백 상태 : front = rear
+   2. 포화 상태 : (rear+1) % n = front
+
+```python
+def isEmpty():
+    return front == rear
+def isFull():
+    return (rear+1) % len(cQ) == front
+```
+
+3. 삽입 : `enQueue(item)` 
+   - 마지막 원소 뒤에 새로운 원소를 삽입하기 위해 
+     1. rear값을 조정하여 새로운 원소가 삽입될 자리 마련
+     2. 그 인덱스에 해당하는 배열원소 cQ[item]에 item을 저장 
+
+```python
+def enQueue(item):
+    global rear
+    if isFull():
+        print('Queue Full')
+    else:
+        rear = (rear + 1) % len(cQ)
+        cQ[rear] = item
+```
+
+4. 삭제 : `deQueue()`, `delete()`
+   - 가장 앞에 있는 원소를 삭제하기 위해 
+     1. front값을 조정해 삭제할 자리를 준비
+     2. 새로운 front원소를 리턴함으로써 삭제와 동일한 기능
+
+```python
+def deQueue():
+    global front
+    if isEmpty():
+        print('Queue Empty')
+    else:
+        front = (front + 1) % len(cQ)
+        return cQ[front]
+```
 
 
+
+## 연결 큐
+
+- **단순 연결 리스트를 이용한 큐**
+- 큐의 원소 : 단순 연결 리스트의 노드
+- 큐의 원소 순서 : 노드의 연결 순서, 링크로 연결됨
+- `front` : 첫 번째 노드를 가리키는 링크, `rear` : 마지막 노드를 가리키는 링크 
+
+### 상태 표현
+
+- 초기 상태 : front = rear = None
+- 공백 상태 : front = rear = None
+
+### 생성 및 구현  (이미지 넣기)
+
+1. 공백 큐 생성 : `createLinkedQueue()`
+2. 원소 A삽입 : `enQueue(A)`
+3. 
