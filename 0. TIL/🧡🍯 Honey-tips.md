@@ -55,7 +55,22 @@ print(DataFrame(data2))
 
 ## 함수 파라미터의 타입 지정하기 
 
+> IDE의 도움받기
+>
+> 함수에 파라미터 타입을 지정하지 않아도 실행되지만 타입을 명시하면 IDE는 실행 함수를 표시해준다 
+
 ```python
 def solution(data: list, start: int, end: int) -> int:
 ```
 
+
+
+## Python default version 간단히 변경하기 
+
+(windows 운영체제 기준)
+
+1. `시스템 환경 변수 편집` 검색
+2. `고급` 탭에서 `환경 변수(N)` 클릭
+3. `Path` 더블 클릭 
+4. 사용하고자 하는 파이썬의 버전을 `위로 이동`을 클릭하여 가장 위에 위치시킴
+5. `git bash`에서 명령어 `python --version` 입력하여 파이썬 버전 변경 여부 확인 
