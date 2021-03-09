@@ -5,7 +5,7 @@
 > - `static web` : 미리 저장된 정적파일(HTML, CSS, JS)을 제공
 > - `Dynamic web` : 사용자의 요청의 변화에 따라 일하는 server-side의 작업 (`SQL`을 통해 데이터 베이스 처리를 함)
 >
- `Python Web Framework` : 웹페이지를 개발하는 과정에서 겪는 어려움을 줄이는 것이 주목적, 기본적인 구조와 코드들을 제공해줌
+>  `Python Web Framework` : 웹페이지를 개발하는 과정에서 겪는 어려움을 줄이는 것이 주목적, 기본적인 구조와 코드들을 제공해줌
 
  - spotify, Instagram, Dropbox, Delivery hero 등에서 사용됨
  - ridiculously fast, fully loaded, reassuringly secure, exceedingly scalable, incredibly versatile
@@ -140,7 +140,7 @@ MTV : Model(데이터베이스), Template(화면-프론트), View(계산, 처리
 >
 > - 핵심 속성
 >   - action : 입력데이터가 전송될 URL 지정
->   - method : 입력데이터 전달 방식 지정
+>   - method : 입력데이터 전달 방식 지정, method 지정 안하면 기본적으로 `get`이 디폴트
 
 ### HTML input element
 
