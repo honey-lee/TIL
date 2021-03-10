@@ -78,6 +78,7 @@
 >    - model 변경사항 발생
 > 2. python manage.py migrations
 >    - migrations 파일 생성
+>    - migrations 파일은 수정 NO!
 > 3. python manage.py migrate
 >    - DB 적용
 
@@ -98,6 +99,29 @@
 - 대부분의 컴퓨터 소프트웨어가 가지는 기본적인 데이터 처리 기능
 - 데이터 베이스 조작의 목적
   - `Create(생성), Read(읽기), Update(갱신), Delete(삭제)`
+
+1. `CREATE`
+
+   - save() method
+     - 저장 전 유효성 검사
+     - 객체를 데이터베이스에 **저장**
+
+2. `READ`
+
+   - 크게 2가지로 분류
+     1. 새로운 queryset리턴
+     2. queryset 리턴하지 않는 method
+   - SQL 구문에서는 select
+
+   
+   
+   
+   
+   
+   
+   `python manage.py createsuperuser` : 관리자 생성 
+   
+   
 
 
 

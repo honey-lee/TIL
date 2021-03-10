@@ -2,8 +2,8 @@
 
 > Dynamic Web Application Program
 >
-> - `static web` : 미리 저장된 정적파일(HTML, CSS, JS)을 제공
-> - `Dynamic web` : 사용자의 요청의 변화에 따라 일하는 server-side의 작업 (`SQL`을 통해 데이터 베이스 처리를 함)
+> - `static web` : 미리 저장된 정적파일(HTML, CSS, JS)을 제공, 사용자에게 보여줄 것을 미리 준비했다가 그대로 보여주는 웹사이트
+> - `Dynamic web` : 사용자의 요청의 변화에 따라 일하는 server-side의 작업 (`SQL`을 통해 데이터 베이스 처리를 함), client-side의 작업(정적파일)은 이미 준비되어 있음
 >
 >  `Python Web Framework` : 웹페이지를 개발하는 과정에서 겪는 어려움을 줄이는 것이 주목적, 기본적인 구조와 코드들을 제공해줌
 
@@ -67,6 +67,7 @@ django의 `MTV` 패턴
 
 ## Template
 
+- 우리에게 보여지는 화면을 표현함
 - 데이터 표현을 제어하는 도구이자 표현에 관련된 로직
 - 사용하는 built-in system : `DTL, django template language`
   - 조건, 반복, 변수, 치환, 필터 등의 기능을 제공
