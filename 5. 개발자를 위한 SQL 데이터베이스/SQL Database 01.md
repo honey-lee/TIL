@@ -19,3 +19,5 @@
    - `DBMS` : DataBase Management System, 데이터베이스 관리 시스템, 데이터를 저장, 조회 등의 작업을 하게 해준다 
      - MySQL, SQLServer, Oracle, SQLite, MariaDB 등이 있음
    - `SQL` : Structured Query Language, DBMS에 명령을 내리기 위해 사용하는 언어, 국제 표준 SQL이 있어서 여러 DBMS간에 호환성이 있음
+   
+   ![image-20210313231713689](SQL Database 01.assets/image-20210313231713689.png)
