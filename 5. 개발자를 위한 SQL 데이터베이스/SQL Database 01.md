@@ -32,3 +32,24 @@
    **DBMS를 사용한다는 것은 실행되고 있는 server에 client를 이용해서 접속한 후 원하는 명령을 내린다는 뜻**
 
 ![image-20210315225420047](SQL Database 01.assets/image-20210315225420047.png)
+
+5. 데이터베이스 생성하기 
+
+   명령어 (CREATE DATABASE) + 데이터베이스 이름 입력
+
+   상단 번개모양 클릭 후 좌측 새로고침 클릭
+
+```MYSQL
+CREATE DATABASE copang_main
+```
+
+6. sys 데이터베이스
+   - MySQL 서버의 성능 관련 정보들을 갖고있는 데이터베이스 
+
+
+
+### 02. 테이블 생성하기 
+
+1. 테이블을 생성하는 법
+   1. SQL 문으로 생성하기 
+   2. CSV 파일 import 해서 테이블로 만들기 
