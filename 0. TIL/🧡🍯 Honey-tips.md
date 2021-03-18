@@ -74,3 +74,65 @@ def solution(data: list, start: int, end: int) -> int:
 3. `Path` 더블 클릭 
 4. 사용하고자 하는 파이썬의 버전을 `위로 이동`을 클릭하여 가장 위에 위치시킴
 5. `git bash`에서 명령어 `python --version` 입력하여 파이썬 버전 변경 여부 확인 
+
+
+
+## 순열과 조합 라이브러리로 간단히 찾기
+
+> `itertools` 모듈에서 순열과 조합을 위한 라이브러리 import 후 간단히 사용 가능
+
+```python
+from itertools import permutations, product, combinations, combinations_with_replacement
+
+list = [1, 2, 3, 4, 5]
+
+
+# 순열 (중복 허용 x), permutations
+
+list2 = permutations(list, 2)
+
+for i in list2:
+    print(i, end = '')
+
+ 
+# (1, 2)(1, 3)(1, 4)(1, 5)(2, 1)(2, 3)(2, 4)(2, 5)(3, 1)(3, 2)(3, 4)(3, 5)(4, 1)(4, 2)(4, 3)(4, 5)(5, 1)(5, 2)(5, 3)(5, 4)
+
+# 순열 (중복 허용 o), product
+list3 = product(list, repeat = 2)
+
+for i in list3:
+    print(i, end = '')
+
+    
+# (1, 1)(1, 2)(1, 3)(1, 4)(1, 5)(2, 1)(2, 2)(2, 3)(2, 4)(2, 5)(3, 1)(3, 2)(3, 3)(3, 4)(3, 5)(4, 1)(4, 2)(4, 3)(4, 4)(4, 5)(5, 1)(5, 2)(5, 3)(5, 4)(5, 5)
+
+# 조합 (중복 허용 x), combinations
+
+list4 = combinations(list, 2)
+
+for i in list4:
+    print(i, end = '')
+
+
+# (1, 2)(1, 3)(1, 4)(1, 5)(2, 3)(2, 4)(2, 5)(3, 4)(3, 5)(4, 5)
+    
+# 조합 (중복 허용 o), combinations_with_replacement
+
+list5 = combinations_with_replacement(list, 2)
+
+for i in list5:
+    print(i, end = '')
+    
+# (1, 1)(1, 2)(1, 3)(1, 4)(1, 5)(2, 2)(2, 3)(2, 4)(2, 5)(3, 3)(3, 4)(3, 5)(4, 4)(4, 5)(5, 5)
+```
+
+
+
+## Bash에서 명령 단축어 지정하기
+
+```bash
+code .bashrc
+# alias 명령어이름='명령'
+alias pyvenv='python -m venv venv && source venv/Scripts/activate'
+```
+
