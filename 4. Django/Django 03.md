@@ -105,11 +105,54 @@ def func(request):
 > - 기본 static 경로 
 >   - app_name/static/
 
+![image-20210318144705484](Django 03.assets/image-20210318144705484.png)
+
+![image-20210318144736342](Django 03.assets/image-20210318144736342.png)
+
+```python
+{% load static %}
+<img src="{% static 'articles/sasmple.png' %}" alt="sample">
+```
 
 
 
+### Static Files in settings.py
+
+- STATIC_ROOT
+  - collectstatic이 배포를 위해 정적 파일을 수집하는 절대 경로
+  - `collectstatic` : 프로젝트 배포 시 흩어져 있는 정적 파일들을 모아 특정 디렉토리로 옮기는 작업
+- STATIC_URL
+  - STATIC_ROOT에 있는 정적 파일을 참조할 때 사용할 URL
+- STATICFILES_DIRS
+  - app내의 static 디렉토리 경로를 사용하는 것 외에 추가적인 정적 파일 경로 정의 
 
 
+
+## media
+
+> 사용자가 웹에서 업로드하는 정적 파일 (image, pdf, video 등)
+
+
+
+### Media Files in settings.py
+
+- MEDIA_ROOT
+  - 사용자가 업로드한 파일을 보관할 디렉토리의 절대 경로
+  - 실제 해당 파일의 업로드가 끝나면 어디에 파일이 저장되게 할지 지정해줌
+- MEDIA_URL
+  - MEDIA_ROOT에서 제공되는 미디어를 처리하는 URL 
+  - 업로드된 파일의 주소(url)를 만들어주는 역할
+- MEDIA_URL 및 STATIC_URL은 서로 다른 값을 가져야함
+
+```python
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('articles/', include('articles.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
 
 
 
