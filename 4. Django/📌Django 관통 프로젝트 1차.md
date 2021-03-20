@@ -1,4 +1,4 @@
-# 📌Django 관통 프로젝트 1차
+# 📌Django 관통 프로젝트 1차 + 2차
 
 
 
@@ -100,4 +100,81 @@ $ python manage.py loaddata moives/movies.json # 복제본 DB로 불러오기
 - 또한, 모델에 변경이 생겼다면 `makemigrations` 부터 다시 해줘야한다. 모델에 필드를 추가할 경우 json과 충돌이 생길 수 있는데, 이는 따로 처리가 필요하다.
 
 - 테이블이 없다는 오류는  `migrate` 하면 해결된다.
+
+
+
+## RESIZE
+
+> 이미지를 사용할 때 이미지의 사이즈가 모두 달라 레이아웃이 달라지는 경우를 방지해주는 라이브러리 -> `django-imagekit`
+
+```python
+from django.db import models
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
+class Profile(models.Model):
+    avatar = models.ImageField(upload_to='avatars')
+   # source = 무엇을 기준으로 썸네일을 만들지
+   # ResizeToFill = 가로, 세로 영역이 주어지면 필요없는 영역을 자르고 자동 형성
+   # format = 확장자
+   # options = 품질
+    avatar_thumbnail = ImageSpecField(source='avatar',
+                                      processors=[ResizeToFill(100, 50)],
+                                      format='JPEG',
+                                      options={'quality': 60})
+```
+
+
+
+### 이미지 파일의 경로 정리하기
+
+> `upload_to` 속성 변경
+
+```python
+from django.db import models
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFill
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    image = ProcessedImageField(upload_to='images/%Y/%m/%d',
+                                        processors=[ResizeToFill(500, 500)],
+                                        format='JPEG',
+                                        options={'quality': 100})
+    created_at = models.DateTimeField(auto_now_add=True)
+```
+
+
+
+## form.html
+
+> `form` 태그에서 action 값이 비어있는 경우 현재의 페이지로 요청을 보냄
+
+
+
+## GIT undo
+
+```shell
+# working directory -> staging directory
+git add a.txt
+
+# staging directory -> working directory
+git rm --cached a.txt
+
+git add a.txt
+git commit -m 'a.txt'
+
+# commit message 취소
+git commit --amend
+# esc -> 취소, i -> 입력모드 (끼워넣기) 
+# i 누른 후 commit message 수정 후 esc 누르기
+# 저장 후 나가기 
+:wq
+
+# commit 파일 추가 
+git add a.txt
+git commit -m 'a.txt, b.txt'
+git add b.txt
+```
 
