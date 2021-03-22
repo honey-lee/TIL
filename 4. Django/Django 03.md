@@ -98,7 +98,7 @@ def func(request):
 
 ## static
 
-> static files(정적 파일) : 웹 사이트의 구성 요소 중에서 image, css, js파일과 같이 해당 내용이 고정되어 응답을 할 때 별도의 처리 없이 파일 내용을 그대로 보여주면 되는ㄴ 파일
+> static files(정적 파일) : 웹 사이트의 구성 요소 중에서 image, css, js파일과 같이 해당 내용이 고정되어 응답을 할 때 별도의 처리 없이 파일 내용을 그대로 보여주면 되는 파일
 >
 > 즉, 사용자의 요청에 따라 내용이 바뀌는 것이 아니라 요청한 것을 그대로 응답하면 되는 파일 
 >
@@ -111,7 +111,7 @@ def func(request):
 
 ```python
 {% load static %}
-<img src="{% static 'articles/sasmple.png' %}" alt="sample">
+<img src="{% static 'articles/sample.png' %}" alt="sample">
 ```
 
 
