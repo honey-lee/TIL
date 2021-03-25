@@ -131,7 +131,7 @@ for i in list5:
 ## Bash에서 명령 단축어 지정하기
 
 ```bash
-code .bashrc
+code ~/.bashrc
 # alias 명령어이름='명령'
 alias pyvenv='python -m venv venv && source venv/Scripts/activate'
 ```
