@@ -1,4 +1,4 @@
-# 📌Django 관통 프로젝트 1차 + 2차
+# 📌Django 관통 프로젝트 1차 + 2차 + 3차
 
 
 
@@ -178,3 +178,6 @@ git commit -m 'a.txt, b.txt'
 git add b.txt
 ```
 
+
+
+`웹 IDE` : git을 통해 올린 파일을 repo에서 수정할 때 사용
