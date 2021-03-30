@@ -130,9 +130,23 @@ for i in list5:
 
 ## Bash에서 명령 단축어 지정하기
 
+> `&&` 연산자를 통해 한번에 여러개의 명령어도 지정가능해 반복 타이핑이 번거로울때 사용하기 유용함 
+
 ```bash
 code ~/.bashrc
 # alias 명령어이름='명령'
 alias pyvenv='python -m venv venv && source venv/Scripts/activate'
+```
+
+
+
+## 진법 변환 쉽게 하기
+
+```python
+print(int('1A', 16))   # 16진수인 1A를 10진법으로 변환하기
+print(int('1A', 15))   # 15진수인 1A를 10진법으로 변환하기
+print(int('1A', 14))   # 14진수인 1A를 10진법으로 변환하기
+print(int('1A', 13))   # 13진수인 1A를 10진법으로 변환하기 
+....
 ```
 
