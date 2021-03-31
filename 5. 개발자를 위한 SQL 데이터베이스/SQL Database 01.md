@@ -55,7 +55,10 @@ CREATE DATABASE copang_main
 #### 1. 테이블을 생성하는 법
 
    1. SQL 문으로 생성하기 
+
    2. CSV 파일 import 해서 테이블로 만들기 
+
+      **CSV 파일** : Comma Separated Values의 줄임말로 데이터 분석 분야에서 사용되는 파일 형식
 
    ```SHELL
    # 1.
@@ -172,3 +175,44 @@ CREATE DATABASE copang_main
 ​	8) SQL 문을 실행했을 때, 실행이 잘 되었는지 등에 관한 정보를 보여주는 영역입니다. 
 
 ​		지금 보면 가장 왼쪽에 초록불이 떠있는데요. 이는 SQL 문이 정상 실행되었다는 뜻입니다.
+
+
+
+### 03. 데이터 조회로 기본 다지기
+
+#### 1. 데이터 조회의 핵심, SELECT와 WHERE
+
+```SQL
+-- * : asterisk, 모든 값을 다 조회함 
+-- FROM : 어느 테이블로부터 데이터를 조회하는지 나타냄
+-- copang_main DB의 member 테이블
+SELECT * FROM copang_main.member;
+
+-- 특정 컬럼을 조회
+SELECT email, age, address FROM copang_main.member;
+
+-- WHERE : 특정 조건을 만족하는 ROW만 조회 
+SELECT * FROM copang_main.member WHERE email = 'abc@naver.com';
+```
+
+
+
+#### 2. SQL 작성형식
+
+##### 	1. SQL문은 항상 `세미콜론`으로 끝난다
+
+##### 	2. SQL 문 안에는 공백이나 개행 등을 자유롭게 넣을 수 있다	
+
+##### 	3. 대소문자 구분문자
+
+- MySQL에 기본으로 내장된 키워드들 (예약어)는 대문자로, 나머지 부분은 소문자로 써준다, 대문자로 작성하지 않아도 실행에는 지장이 없지만 convention이다.
+
+##### 4. 데이터베이스 이름과 테이블 이름
+
+- `데이터베이스이름.테이블이름` 형식으로 작성
+- `USE` 명령어를 통해 사용할 데이터베이스를 지정한 후에 사용도 가능 
+
+
+
+
+
