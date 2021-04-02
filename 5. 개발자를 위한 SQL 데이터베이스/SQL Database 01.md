@@ -214,5 +214,33 @@ SELECT * FROM copang_main.member WHERE email = 'abc@naver.com';
 
 
 
+#### 3. 조건을 나타내는 다양한 방법
+
+```sql
+-- 27세 이상의 회원 조회
+SELECT * FROM copang_main.member WHERE age >= 27;
+
+-- 30 ~ 39세 회원 (BETWEEN:~사이)
+SELECT * FROM copang_main.member WHERE age BETWEEN 30 AND 39;
+
+-- 30대가 아닌 회원 조회
+SELECT * FROM copang_main.member WHERE age NOT BETWEEN 30 AND 39;
+
+-- 숫자 형식이 아니라도 조회 가능, 2019년 1월 1일 이후 가입자 
+SELECT * FROM copang_main.member WHERE sign_up_day > '2019-01-01';
+
+-- 2019년에 가입한 회원 조회
+SELECT * FROM copang_main.member WHERE sign_up_day BETWEEN '2019-01-01' AND '2019-12-31';
+```
+
+
+
+#### 4. 문자열 패턴 매칭 조건
+
+```SQL
+--주소가 서울인 회원들만 조회
+SELECT * FROM copang_main.member WHERE address LIKE '서울%';
+```
+
 
 
