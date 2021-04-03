@@ -244,3 +244,205 @@ SELECT * FROM copang_main.member WHERE address LIKE '서울%';
 
 
 
+#### 5. 그 밖의 조건 표현식
+
+##### 1) 같지않음 : `!=`, `<>`
+
+##### 2) 이 중에 있는 : `IN`
+
+##### 3) 한 글자를 나타내는 : `_`
+
+
+
+#### 6. DATA 타입
+
+1. 연도, 월, 일 추출하기 
+
+```SQL
+-- 1992년 출생 조회 (YEAR 함수 사용)
+SELECT * FROM copang_main.member WHERE YEAR(birthday) = '1992';
+
+-- 여름에 가입한 회원들 조회 (MONTH 함수)
+SELECT * FROM copang_main.member WHERE MONTH(sign_up_day) IN (6, 7, 8);
+
+-- 각 달의 후반부에 가입했던 회원들 조회 (DAY 함수) (15일/31일도 포함해서 조회됨)
+SELECT * FROM copang_main.member WHERE DAY(sign_up_day) BETWEEN 15 AND 31;
+```
+
+2. 날짜 간의 차이 구하기 (`DATEDIFF` 함수, `CURDATE()`함수)
+
+```SQL
+-- DATEDIFF(날짜a, 날짜b)를 사용하면 '날짜 a-날짜b'를 해서 차이 일수를 알려줌'
+SELECT email, sign_up_day, DATEDIFF(sign_up_day, '2019-01-01') FROM copang_main.member;
+
+-- CURDATE() : 오늘 날짜를 기준으로 함
+SELECT email, sign_up_day, CURDATE(), DATEDIFF(sign_up_day, CURDATE()) FROM copang_main.member;
+```
+
+3. 날짜 더하기 빼기 (`DATE_ADD()`, `DATE_SUB()`)
+
+```sql
+-- 가입일 기준으로 300일 이후의 날짜 구하기
+SELECT email, sign_up_day, DATE_ADD(sign_up_day, INTERVAL 300 DAY) FROM copang_main.member;
+
+-- 가입일 기준으로 250일 이전의 날짜 구하기
+SELECT email, sign_up_day, DATE_SUB(sign_up_day, INTERVAL 250 DAY) FROM copang_main.member;
+```
+
+4. UNIX Timestamp 값
+
+   > `UNIX Timestamp` : 1970년 1월 1일을 기준으로 총 몇초가 지냈는지 나타내는 값, 굉장히 큰 값으로 나타나기 때문에 읽을 수 있는 형태로 변환해주어야 하는데 이 때 사용하는 것이 `FROM_UNIXTIME` 함수이다
+
+```sql
+SELECT email, sign_up_day, UNIX_TIMESTAMP(sign_up_day) FROM copang_main.member;
+```
+
+![image-20210403153632177](SQL Database 01.assets/image-20210403153632177.png)
+
+```SQL
+SELECT email, sign_up_day, FROM_UNIXTIME(UNIX_TIMESTAMP(sign_up_day)) FROM copang_main.member;
+```
+
+![image-20210403153745009](SQL Database 01.assets/image-20210403153745009.png)
+
+
+
+#### 7. 여러 개의 조건 걸기 
+
+```sql
+-- 성별이 남자이면서 주소가 서울이면서 나이가 25~29세인 회원 (AND, 조건을 동시에 만족할 때 조회)
+SELECT * FROM copang_main.member WHERE gender = m AND address = '서울%' AND age BETWEEN 25 and 29;
+
+-- 이 중 하나라도 조건을 만족하는 회원 구하기
+SELECT * FROM copang_main.member WHERE MONTH(sign_up_day) BETWEEN 3 AND 5
+	OR MONTH(sign_up_day) BETWENN 9 AND 11;
+	
+SELECT * FROM copang_main.member WHERE (gender = 'm' AND height >= 180)
+	OR (gender = 'f' AND height >= 170);
+```
+
+**OR 사용시 주의점**
+
+```sql
+-- id가 1 혹은 2인 회원 조회
+SELECT * FROM copang_main.member WHERE id = 1 OR id = 2;
+
+-- 전체 row 출력됨
+SELECT * FROM copang_main.member WHERE id = 1 OR 2;
+-- id = 2 OR TRUE 로 인식되기 때문에
+```
+
+**AND과 OR간의 우선순위** : AND이 OR 보다 우선순위가 높아 먼저 실행된다
+
+```SQL
+-- 성별이 여자이거나 나이가 30세 미만이면서 키가 180이상인 회원들 
+SELECT * FROM copang_main.member WHERE gender = 'f' OR age < 30 AND height > 180;
+
+-- 성별이 여자이거나 나이가 30세 미만인 회원 중에 키가 180 이상인 회원들
+SELECT * FROM copang_main.member WHERE (gender = 'f' OR age < 30) AND height > 180;
+```
+
+
+
+#### 8. 문자열 패턴 매칭 조건 사용 시 주의점
+
+> 패턴 매칭 조건
+>
+> - LIKE
+> - `%`
+> - `_`
+
+```sql
+-- 역슬래쉬를 해당문자앞에 써주기
+
+-- 문자로서의 % 나타내기 
+SELECT * FROM copang_main.text WHERE sentence LIKE '%\%%';
+
+-- 작은 따옴표 이스케이핑
+SELECT * FROM copang_main.text WHERE sentence LIKE '%\'%';
+
+-- 언더바 이스케이핑
+SELECT * FROM copang_main.text WHERE sentence LIKE '%\_%';
+
+-- 큰 따옴표 이스케이핑
+SELECT * FROM copang_main.text WHERE sentence LIKE '%\"%\"%';
+
+
+-----------------------------------------------------------------
+
+-- 대소문자 구분하기 BINARY
+SELECT * FROM copang_main.text WHERE sentence LIKE BINARY '%G%';
+SELECT * FROM copang_main.text WHERE sentence LIKE BINARY '%g%';
+```
+
+
+
+#### 9. 데이터 정렬해서 보기
+
+> 정렬 : row들을 특정 컬럼을 기준으로 순서대로 출력
+
+```SQL
+-- height 컬럼을 기준(오름차순)으로 row 출력, 기본으로 오름차순
+SELECT * FROM copang_main.member
+ORDER BY height (ASC);
+
+-- 내림차순 정렬
+SELECT * FROM copang_main.member
+ORDER BY height DESC;
+
+-- 여러개의 기준 두기(가입 연도 기준 내림차순 정렬, 다시 이메일 기준 오름차순 정렬)
+SELECT * FROM copang_main.member
+ORDER BY YEAR(sign_up_date) DESC, email ASC;
+```
+
+
+
+#### 10. 각 절의 작성 순서 지키기 & 정렬 시 주의점
+
+1. **'SQL 문법 상 WHERE는 ORDER BY 앞에 나와야 한다'**
+
+2. 정렬 기준의 데이터 타입이 숫자형인 경우와 문자형인 경우에 정렬 결과가 달라진다
+
+   1. INT 타입의 값은 숫자의 대소를 기준으로 정렬
+   2. TEXT 타입은 한 문자씩 그 문자 순서를 비교해 정렬 (120 - 19, 230 - 27), TEXT 타입인 컬럼의 숫자값들을 INT 형의 숫자 처럼 정렬하려면 `CAST`함수 사용
+
+   ```SQL
+   -- signed는 양수와 음수 포함 모든 정수를 나타낼 수 있는 데이터 타입
+   SELECT * FROM test ORDER BY CAST(data AS signed) ASC;
+   ```
+
+
+
+#### 11. 데이터 일부만 추려보기 (LIMIT)
+
+```sql
+-- 가장 최근에 가입한 회원 10명만 추려보기 
+SELECT * FROM copang_main.member 
+ORDER BY sign_up_day DESC
+LIMIT 10;
+
+-- 최근에 9,10번째로 가입한 회원찾기 (row는 0번부터 카운팅됨)
+SELECT * FROM copang_main.member 
+ORDER BY sign_up_day DESC
+LIMIT 8 2;
+```
+
+
+
+#### 12. LIMIT과 Pagination
+
+- LIMIT과 Pagination은 서로 관계가 깊음 
+
+```sql
+-- Pagination 설정(가정)
+1페이지 : SELECT * FROM db.search_result ~ ORDER BY registration_date DESC LIMIT 0, 10
+
+2페이지 : SELECT * FROM db.search_result ~ ORDER BY registration_date DESC LIMIT 10, 10
+
+3페이지 : SELECT * FROM db.search_result ~ ORDER BY registration_date DESC LIMIT 20, 10
+
+4페이지 : SELECT * FROM db.search_result ~ ORDER BY registration_date DESC LIMIT 30, 10
+```
+
+
+
