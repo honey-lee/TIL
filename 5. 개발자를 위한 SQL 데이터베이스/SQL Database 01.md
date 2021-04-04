@@ -446,3 +446,44 @@ LIMIT 8 2;
 
 
 
+### 04. 데이터 분석 단계로 나아가기
+
+#### 1. 데이터의 특성 구하기 
+
+```sql
+-- 테이블의 총 row 수 구하기 -> null의 값은 제외하고 세어짐
+-- COUNT(*)을 쓰면 전체 row수가 리턴됨
+SELECT COUNT(*) FROM copang_main.member; 
+
+-- 최대값 구하기 
+SELECT MAX(height) FROM copang_main.member; 
+
+-- 최소값 구하기
+SELECT MIN(height) FROM copang_main.member; 
+
+-- 평균값 구하기 (null을 제외하고 평균값을 구해줌)
+SELECT AVG(height) FROM copang_main.member; 
+
+-- 집계 함수 (SUM)
+SELECT SUM(height) FROM copang_main.member; 
+
+-- 표준 편차(STD)
+SELECT STD(height) FROM copang_main.member; 
+
+-- 산술 함수
+-- 절대값 (ABS)
+SELECT ABS(height) FROM copang_main.member; 
+
+-- 제곱근 (SQRT)
+SELECT SQRT(height) FROM copang_main.member;
+
+-- 올림 (CEIL)
+SELECT CEIL(height) FROM copang_main.member; 
+
+-- 내림(FLOOR)
+SELECT FLOOR(height) FROM copang_main.member;
+
+-- 반올림(ROUND)
+SELECT ROUND(height) FROM copang_main.member; 
+```
+
