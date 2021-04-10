@@ -487,3 +487,46 @@ SELECT FLOOR(height) FROM copang_main.member;
 SELECT ROUND(height) FROM copang_main.member; 
 ```
 
+
+
+#### 2. NULL을 다루는 방법 
+
+```SQL
+-- NULL 조회하기 
+SELECT * FROM member WHERE address IS NULL;
+
+-- NULL이 아닌 데이터만 조회하기 
+SELECT * FROM member WHERE address IS NOT NULL;
+
+-- 하나라도 NULL인 데이터 조회하기 
+SELECT * FROM member WHERE address IS NULL OR height IS NULL;
+
+-- 누가 봐도 이해할 수 있도록 NULL의 이름을 바꾸기 (COALESCE 함수)
+SELECT COALESCE(height, '####'), COALESCE(weight, '___') from member; 
+```
+
+**1. IS NULL과 =NULL은 다르다**
+
+- NULL은 어떤 값이 아니기 때문에 애초에 등호를 사용할 수 있는 대상이 아님. 그래서 =NULL은 True일 수 없다.
+
+**2. NULL에는 어떤 연산을 해도 결국 NULL이다**
+
+```sql
+-- NULL값이 있을 경우 아래와 같이 조회하면 
+SELECT *, height+3 FROM member;
+-- 다른 값에는 3이 더해져 있지만 NULL은 그대로 NULL이다
+```
+
+
+
+#### 3. 이상한 값 제외
+
+- 컬럼에서 유효하지 않은 값 제거하기 (age값에 음수, 지나치게 큰 수 등)
+
+```SQL
+-- 유효한 값만 구하기
+SELECT AVG(age) FROM member WHERE age BETWEEN 5 AND 100;
+
+SELECT * FROM member WHERE address NOT LIKE '%호';
+```
+
