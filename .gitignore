@@ -207,5 +207,6 @@ $RECYCLE.BIN/
 *.png
 트리/
 *.zip
+*.pdf
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,python,vscode,git,jupyternotebooks
