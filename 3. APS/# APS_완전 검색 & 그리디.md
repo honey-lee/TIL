@@ -113,8 +113,8 @@ $$
   a = [1, 2, 3, 4, 5]
   
   for i in range(0, M-3+1):
-      for j in range(i+1, M-2+1):
-          for k in range(j+1, M-3+1):
+      for j in range(i+1, M-2+2):
+          for k in range(j+1, M-3+3):
               print(a[i], a[j], a[k])
               
   # 123 124 125 234 235 245 345
@@ -187,7 +187,7 @@ $$
         if s == 0:
             for j in range(10):
                 if i & (1<<j):
-                    print(A[j], end=' ')
+                    print(arr[j], end=' ')
                 print()
     ```
 
