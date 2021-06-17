@@ -261,3 +261,23 @@ else:
 ```
 
 finditer는 findall과 동일하지만 그 결과로 반복 가능한 객체(iterator object)를 돌려준다. 반복 가능한 객체가 포함하는 각각의 요소는 match 객체이다.
+
+
+
+
+
+## 최대공약수 & 최소공배수
+
+> - 최대공약수 : `gcm(greatest common multiple)`
+> - 최소공배수 : `lcm (least common multiple)` 
+> - math 모듈의 `math.gcd`, `math.lcm` 사용
+
+```python
+import math
+
+# 숫자는 0개부터 N개까지 인자로 받을 수 있음
+math.gcd(숫자들)
+
+math.lcm(숫자들)
+```
+
