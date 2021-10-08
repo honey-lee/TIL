@@ -137,8 +137,20 @@ $(document).ready(function (){
 
 ### 📑 속성 조작 메서드
 
-[속성 탐색 선택자의 종류의 사본](https://www.notion.so/b4338b4fb1694e159d1d33b1450b5204)
+[속성 조작 메서드](https://www.notion.so/b4338b4fb1694e159d1d33b1450b5204)
 
 ### 📑 수치 조작 메서드
 
+[수치 조작 메서드](https://www.notion.so/729fb8498c2a47e4bc46437e8df56a84)
+
+![Untitled](JQuery%20a2f1d44f284c4ffdb03014cd3af735eb/Untitled.png)
+
 ### 📑 객체 편집 메서드
+
+- 객체 편집
+    - 새 요소를 생성
+    - 요소 복사
+    - 새로 생성한 요소를 의도한 위치에 삽입
+    - 선택한 요소 삭제
+
+[객체 편집 메서드](https://www.notion.so/4199ecbd9df94043aaa3f49c39cba981)
