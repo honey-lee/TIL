@@ -248,3 +248,44 @@ console.log(codeit); //undefined, 값을 선언만 하고 지정하지 않았음
 codeit = null;
 console.log(codeit); //null, 값이 없다는 것을 선언했음
 ```
+
+
+
+### 02 추상화
+
+1. 할당 연산자
+
+   ```jsx
+   //할당 연산자 (Assignment operators)
+   
+   let name = '코드잇';
+   let x = 5;
+   
+   //여기서 = 는 할당해주는 할당연산자에 속한다
+   x = x - 2;
+   console.log(x) //3
+   ```
+
+2. 복합 할당 연산자 (Compound assignment operators)
+
+   - 복합 할당 연산자 : 할당 연산자와 결합해서 자주 쓰이는 표현을 더 간략하게 쓸 수 있게 해주는 연산자
+
+   ```jsx
+   // 다음 두 줄은 같습니다
+   x = x + 2;
+   x += 2;
+   
+   // 다음 두 줄은 같습니다
+   x = x * 2;
+   x *= 2;
+   
+   // 다음 세 줄은 같습니다
+   x = x + 1;
+   x += 1;
+   x++;
+   
+   // 다음 세 줄은 같습니다
+   x = x - 1;
+   x -= 1;
+   x--;
+   ```
